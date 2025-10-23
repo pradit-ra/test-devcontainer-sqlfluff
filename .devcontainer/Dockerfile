@@ -1,5 +1,5 @@
 
-FROM mcr.microsoft.com/devcontainers/base:jammy
+FROM mcr.microsoft.com/devcontainers/python:dev-3.11-trixie
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG USER=vscode
@@ -32,16 +32,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
 # Python + dependencies installation
 USER $USER
 ARG HOME="/home/$USER"
-ENV PYENV_ROOT="${HOME}/.pyenv"
-ENV PATH="${PYENV_ROOT}/shims:${PYENV_ROOT}/bin:/${HOME}/.local/bin:$PATH"
 
 WORKDIR ${HOME}
-
-COPY .python-version ${HOME}/
-
-RUN curl https://pyenv.run | bash && \
-    pyenv install "$(cat .python-version)" && \
-    pyenv global "$(cat .python-version)"
 
 RUN echo "install dependencies" && \
     pip install --upgrade pip && \
