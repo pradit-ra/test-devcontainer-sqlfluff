@@ -1,0 +1,52 @@
+// Update the VARIANT arg in docker-compose.yml to pick a Python version: 3, 3.8, 3.7, 3.6, 3.11
+{
+    "name": "data-ods-models-dbt",
+    "dockerComposeFile": "./docker-compose.yaml",
+    "service": "dbt",
+    "remoteEnv": {
+        "DBT_PROFILES_DIR": ".profiles"
+    },
+    "workspaceFolder": "/dbt",
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.defaultProfile.linux#": "/bin/bash",
+                "python.defaultInterpreterPath": "${env:PYENV_ROOT}/shims/python",
+                "python.languageServer": "Pylance",
+                "files.insertFinalNewline": true,
+                "files.trimTrailingWhitespace": true,
+                "terminal.integrated.defaultProfile.linux": "zsh",
+                "terminal.integrated.profiles.linux": {
+                    "zsh": {
+                        "path": "/bin/zsh"
+                    }
+                },
+                "sqlfluff.dialect": "postgres",
+                "sqlfluff.linter.run": "onSave",
+                "sqlfluff.format.enabled": true,
+                "sqlfluff.experimental.format.executeInTerminal": true,
+                "files.associations": {
+                    "*.sql": "jinja-sql",
+                    "*.md": "markdown",
+                    "*.yaml": "jinja-yaml",
+                    "*.yml": "jinja-yaml"
+                },
+                "editor.formatOnSave": true
+            },
+            "extensions": [
+                "bastienboutonnet.vscode-dbt",
+                "dorzey.vscode-sqlfluff",
+                "editorconfig.editorconfig",
+                "ms-azuretools.vscode-docker",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "visualstudioexptteam.vscodeintellicode",
+                "eamodio.gitlens",
+                "redhat.vscode-yaml",
+                "samuelcolvin.jinjahtml",
+                "mechatroner.rainbow-csv"
+            ]
+        }
+    },
+    "remoteUser": "vscode"
+}
